@@ -1,0 +1,17 @@
+# m = model: fileName, textures
+# v = multi: objects, fileName, textures
+# c = camera: animateCamera, filename
+# a = movement: filename
+# o = objects: modelID, moveID, pos, scale, rot
+# p = objects: modelIDFirst, modelIDLast, moveID, pos, scale, rot
+# s = sun: position, lookat, color
+# l = light: animation, position, color, attenuation(strength, constant, linear, quadratic)
+
+# lights
+s -1780  2000  2400 |     0     0  0 | 255 255 255
+
+# models
+m models/ball.obj textures/ball.tx
+
+# scene placement
+o  0 -1 |   0  0  0 |  0.5  0.5  0.5 | 0 0 0

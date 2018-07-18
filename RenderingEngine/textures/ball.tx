@@ -1,0 +1,6 @@
+# a = albedo: path
+# d = displacement: path
+# n = normal: path
+# m = material: float1, float2, float3
+
+m 0 0 0
