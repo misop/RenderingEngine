@@ -14,4 +14,4 @@ s -1780  2000  2400 |     0     0  0 | 255 255 255
 m models/ball.obj textures/ball.tx
 
 # scene placement
-o  0 -1 |   0  0  0 |  0.5  0.5  0.5 | 0 0 0
+o  0 -1 |   0  0  0 |  2  2  2 | 0 0 0
