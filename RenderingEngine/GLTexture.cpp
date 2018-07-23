@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GLTexture.h"
 #include <IL/il.h>
+#include <iostream>
 
 #include "hdrloader.h"
 
@@ -191,15 +192,12 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	TexParameteri(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	// nacitanie textury pre posx stenu zo suboru a do OpenGL
-	HDRLoaderResult *posxRes = new HDRLoaderResult();
-	bool result = HDRLoader::load(posxFile.c_str(), *posxRes);
+	HDRLoaderResult posxRes;
+	bool result = HDRLoader::load(posxFile.c_str(), posxRes);
 	if (!result) {
 		return;
 	}
-	for (int i = 0; i < 256 * 256; i++) {
-		posxRes->cols[i] /= 20;
-	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, posxRes->width, posxRes->height, 0, GL_RGB, GL_FLOAT, posxRes->cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, posxRes.width, posxRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)posxRes.cols);
 
 	// nacitanie textury pre negx stenu zo suboru a do OpenGL
 	HDRLoaderResult negxRes;
@@ -207,7 +205,7 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	if (!result) {
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negxRes.width, negxRes.height, 0, GL_RGB, GL_FLOAT, negxRes.cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB32F, negxRes.width, negxRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)negxRes.cols);
 
 	// nacitanie textury pre posy stenu zo suboru a do OpenGL
 	HDRLoaderResult posyRes;
@@ -215,7 +213,7 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	if (!result) {
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, posyRes.width, posyRes.height, 0, GL_RGB, GL_FLOAT, posyRes.cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB32F, posyRes.width, posyRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)posyRes.cols);
 
 	// nacitanie textury pre negy stenu zo suboru a do OpenGL
 	HDRLoaderResult negyRes;
@@ -223,7 +221,7 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	if (!result) {
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negyRes.width, negyRes.height, 0, GL_RGB, GL_FLOAT, negyRes.cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB32F, negyRes.width, negyRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)negyRes.cols);
 
 	// nacitanie textury pre posz stenu zo suboru a do OpenGL
 	HDRLoaderResult poszRes;
@@ -231,7 +229,7 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	if (!result) {
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, poszRes.width, poszRes.height, 0, GL_RGB, GL_FLOAT, poszRes.cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB32F, poszRes.width, poszRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)poszRes.cols);
 
 	// nacitanie textury pre negz stenu zo suboru a do OpenGL
 	HDRLoaderResult negzRes;
@@ -239,7 +237,7 @@ void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, str
 	if (!result) {
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negzRes.width, negzRes.height, 0, GL_RGB, GL_FLOAT, negzRes.cols);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB32F, negzRes.width, negzRes.height, 0, GL_RGB, GL_FLOAT, (GLvoid*)negzRes.cols);
 }
 
 #pragma endregion
