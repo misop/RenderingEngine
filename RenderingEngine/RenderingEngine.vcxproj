@@ -92,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -123,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -162,6 +162,7 @@
     <ClInclude Include="GLShader.h" />
     <ClInclude Include="GLText.h" />
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="hdrloader.h" />
     <ClInclude Include="Interpolation.h" />
     <ClInclude Include="RenderingEngine.h" />
     <ClInclude Include="stdafx.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="GLText.cpp" />
     <ClCompile Include="GLTexture.cpp" />
+    <ClCompile Include="hdrloader.cpp" />
     <ClCompile Include="Interpolation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />

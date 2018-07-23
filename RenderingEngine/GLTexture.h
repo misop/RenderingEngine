@@ -29,6 +29,7 @@ namespace GL {
 
 		void LoadRGBATextureFromImage(std::string img);
 		void LoadCubeTextureFromImages(std::string posxFile, std::string negxFile, std::string posyFile, std::string negyFile, std::string poszFile, std::string negzFile);
+		void LoadHDRCubeTextureFromImages(std::string posxFile, std::string negxFile, std::string posyFile, std::string negyFile, std::string poszFile, std::string negzFile);
 	};
 }
 

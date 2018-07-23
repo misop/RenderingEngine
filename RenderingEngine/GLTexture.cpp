@@ -2,6 +2,8 @@
 #include "GLTexture.h"
 #include <IL/il.h>
 
+#include "hdrloader.h"
+
 using namespace std;
 using namespace GL;
 
@@ -178,6 +180,66 @@ void Texture::LoadCubeTextureFromImages(string posxFile, string negxFile, string
     }
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 
                  0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+}
+
+void Texture::LoadHDRCubeTextureFromImages(string posxFile, string negxFile, string posyFile, string negyFile, string poszFile, string negzFile) {
+	// vytvorenie OpenGL cube map textury
+	Bind();
+	TexParameteri(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	TexParameteri(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	TexParameteri(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	TexParameteri(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// nacitanie textury pre posx stenu zo suboru a do OpenGL
+	HDRLoaderResult *posxRes = new HDRLoaderResult();
+	bool result = HDRLoader::load(posxFile.c_str(), *posxRes);
+	if (!result) {
+		return;
+	}
+	for (int i = 0; i < 256 * 256; i++) {
+		posxRes->cols[i] /= 20;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, posxRes->width, posxRes->height, 0, GL_RGB, GL_FLOAT, posxRes->cols);
+
+	// nacitanie textury pre negx stenu zo suboru a do OpenGL
+	HDRLoaderResult negxRes;
+	result = HDRLoader::load(negxFile.c_str(), negxRes);
+	if (!result) {
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negxRes.width, negxRes.height, 0, GL_RGB, GL_FLOAT, negxRes.cols);
+
+	// nacitanie textury pre posy stenu zo suboru a do OpenGL
+	HDRLoaderResult posyRes;
+	result = HDRLoader::load(posyFile.c_str(), posyRes);
+	if (!result) {
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, posyRes.width, posyRes.height, 0, GL_RGB, GL_FLOAT, posyRes.cols);
+
+	// nacitanie textury pre negy stenu zo suboru a do OpenGL
+	HDRLoaderResult negyRes;
+	result = HDRLoader::load(negyFile.c_str(), negyRes);
+	if (!result) {
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negyRes.width, negyRes.height, 0, GL_RGB, GL_FLOAT, negyRes.cols);
+
+	// nacitanie textury pre posz stenu zo suboru a do OpenGL
+	HDRLoaderResult poszRes;
+	result = HDRLoader::load(poszFile.c_str(), poszRes);
+	if (!result) {
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, poszRes.width, poszRes.height, 0, GL_RGB, GL_FLOAT, poszRes.cols);
+
+	// nacitanie textury pre negz stenu zo suboru a do OpenGL
+	HDRLoaderResult negzRes;
+	result = HDRLoader::load(negzFile.c_str(), negzRes);
+	if (!result) {
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB32F, negzRes.width, negzRes.height, 0, GL_RGB, GL_FLOAT, negzRes.cols);
 }
 
 #pragma endregion

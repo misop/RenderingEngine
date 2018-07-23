@@ -63,6 +63,9 @@
     <ClInclude Include="Interpolation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hdrloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -102,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Interpolation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hdrloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
