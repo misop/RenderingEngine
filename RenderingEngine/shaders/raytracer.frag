@@ -12,9 +12,9 @@ layout(location = 5) uniform vec3 RayDirection;
 layout(binding=3) uniform samplerCube cube_map;
 
 // aluminium
-//const float d = 0.5;//10.2958;
-//const float ps = 1.3547;
-//const float alpha = 0.01;
+//const float d = 0;//10.2958;
+//const float ps = 1.40466712865577;
+//const float alpha = 0.0102966372113220;
 // chrome
 //const float d = 8.8524;
 //const float ps = 0.8714;
@@ -28,13 +28,21 @@ layout(binding=3) uniform samplerCube cube_map;
 //const float ps = 0.2190;
 //const float alpha = 0.0033;
 // paper
-//const float d = 0.9989;
-//const float ps = 0.0016;
-//const float alpha = 0.6896;
-//custom
-const float d = 0;
-const float ps = 1;
-const float alpha = 0.001;
+const float d = 0.9989;
+const float ps = 0.0016;
+const float alpha = 0.6896;
+// mirror
+//const float d = 0;
+//const float ps = 1;
+//const float alpha = 1e-2;
+// white
+//const float d = 1;
+//const float ps = 0;
+//const float alpha = 0.001;
+// wojciech aluminum
+//const float d = 0.304;
+//const float ps = 0.0537;
+//const float alpha = 0.00845;
 
 layout (location = 0) out vec4 fColor;
 

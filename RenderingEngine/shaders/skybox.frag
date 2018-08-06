@@ -7,7 +7,7 @@ uniform samplerCube cube_map;
 layout (location = 0) out vec4 fColor;
 
 const float gamma = 2.2;
-const float exposure = 3;
+const float exposure = 0.5;
 
 void main(void)
 {
